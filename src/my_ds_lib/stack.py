@@ -22,3 +22,6 @@ class Stack(Generic[T]):
     
     def size(self) -> int:
         return len(self.items)
+    
+    def __len__(self) -> int:
+        return len(self.items)
