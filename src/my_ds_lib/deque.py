@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar, Iterable
+from typing import Generic, TypeVar, Sequence
 
 from my_ds_lib.queue import Node, Queue
 
@@ -27,15 +27,16 @@ class Deque(Queue, Generic[T]):
             return None
         return self.head.data
     
-    def extend(self, iterable: Iterable[T]) -> None:
+    def extend(self, iterable: Sequence[T]) -> None:
         for i in iterable:
             self.append(data=i)
             
-    def extendleft(self, iterable: Iterable[T]) -> None: #Исправить то что элементы добавляются в другом порядке
-        for i in iterable:
-            self.appendleft(data=i)
-    
-    
+    def extendleft(self, iterable: Sequence[T]) -> None:
+        idx = len(iterable) - 1
+        while idx >= 0:
+            data = iterable[idx]
+            self.appendleft(data=data)
+            idx -= 1
     
         
     
