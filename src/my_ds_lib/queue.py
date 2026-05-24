@@ -3,7 +3,7 @@ from typing import TypeVar, Generic
 T = TypeVar("T")
 
 class Node(Generic[T]):
-    def __init__(self, next: Node[T] | None, data: T) -> None:
+    def __init__(self, next: "Node[T] | None", data: T) -> None:
         self.next = next
         self.data = data            
 
