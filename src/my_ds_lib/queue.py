@@ -13,7 +13,7 @@ class Queue(Generic[T]):
         self.tail: Node[T] | None = None
         self._size: int = 0
     
-    def enqueue(self, data: T) -> None:
+    def append(self, data: T) -> None:
         if not self.head:
             node = Node(next=None, data=data)
             self.head = node
@@ -26,22 +26,25 @@ class Queue(Generic[T]):
             raise ValueError("Last element equel None")
         self._size += 1
 
-    def dequeue(self) -> T | None:
+    def pop(self) -> T | None:
         if self.head is None:
             return None
-        else: 
-            data = self.head.data
-            self.head = self.head.next
-            if self.head is None:
-                self.tail = None
-            self._size -= 1
-            return data
+        data = self.head.data
+        self.head = self.head.next
+        if self.head is None:
+            self.tail = None
+        self._size -= 1
+        return data
         
     def peek(self) -> T | None:
         if self.head:
             return self.head.data
         else:
             return None
+        
+    def clear(self) -> None:
+        self.head = None
+        self.tail = None
     
     def is_empty(self) -> bool:
         return not self.head
